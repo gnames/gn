@@ -15,6 +15,7 @@ func PrintErrorMessage(err error) {
 	if errors.As(err, &target) {
 		target.print()
 	}
+	Message("\n<err>Error:</err> " + err.Error())
 }
 
 // ErrorCode represents a numeric code for categorizing errors.
