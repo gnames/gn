@@ -78,7 +78,7 @@ const (
 	unknownMsgType  msgType = iota // General message without a specific icon
 	errorMsgType                   // Error message with ❌ icon
 	warningMsgType                 // Warning message with ⚠️ icon
-	infoMsgType                    // Informational message with ℹ️ icon
+	infoMsgType                    // Informational message with => icon
 	progressMsgType                // Progress message with ⏳ icon
 	successMsgType                 // Success message with ✅ icon
 )
@@ -103,7 +103,7 @@ func (u userMsg) print() {
 	icon := ""
 	switch u.msgType {
 	case infoMsgType:
-		icon = "ℹ️ "
+		icon = "=> "
 	case successMsgType:
 		icon = "✅ "
 	case warningMsgType:
