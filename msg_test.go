@@ -64,7 +64,7 @@ func TestInfo(t *testing.T) {
 	io.Copy(&buf, r)
 	output := buf.String()
 
-	if !strings.Contains(output, "ℹ️") {
+	if !strings.Contains(output, "=>") {
 		t.Errorf("Info() should contain info icon")
 	}
 	if !strings.Contains(output, "info message") {
@@ -197,7 +197,7 @@ func TestUserMsg_print(t *testing.T) {
 				msgType: infoMsgType,
 				msg:     "info test",
 			},
-			contains: []string{"ℹ️", "info test"},
+			contains: []string{"=>", "info test"},
 		},
 		{
 			name: "success message",
@@ -238,7 +238,7 @@ func TestUserMsg_print(t *testing.T) {
 				msg:     "value: %d",
 				vars:    []any{42},
 			},
-			contains: []string{"ℹ️", "value: 42"},
+			contains: []string{"=>", "value: 42"},
 		},
 	}
 
