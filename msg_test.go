@@ -10,9 +10,9 @@ import (
 
 func TestMessage(t *testing.T) {
 	// Capture stdout
-	old := os.Stdout
+	old := os.Stderr
 	r, w, _ := os.Pipe()
-	os.Stdout = w
+	os.Stderr = w
 
 	Message("test message")
 
@@ -29,14 +29,14 @@ func TestMessage(t *testing.T) {
 }
 
 func TestWarn(t *testing.T) {
-	old := os.Stdout
+	old := os.Stderr
 	r, w, _ := os.Pipe()
-	os.Stdout = w
+	os.Stderr = w
 
 	Warn("warning message")
 
 	w.Close()
-	os.Stdout = old
+	os.Stderr = old
 
 	var buf bytes.Buffer
 	io.Copy(&buf, r)
@@ -51,14 +51,14 @@ func TestWarn(t *testing.T) {
 }
 
 func TestInfo(t *testing.T) {
-	old := os.Stdout
+	old := os.Stderr
 	r, w, _ := os.Pipe()
-	os.Stdout = w
+	os.Stderr = w
 
 	Info("info message")
 
 	w.Close()
-	os.Stdout = old
+	os.Stderr = old
 
 	var buf bytes.Buffer
 	io.Copy(&buf, r)
@@ -73,14 +73,14 @@ func TestInfo(t *testing.T) {
 }
 
 func TestProgress(t *testing.T) {
-	old := os.Stdout
+	old := os.Stderr
 	r, w, _ := os.Pipe()
-	os.Stdout = w
+	os.Stderr = w
 
 	Progress("progress message")
 
 	w.Close()
-	os.Stdout = old
+	os.Stderr = old
 
 	var buf bytes.Buffer
 	io.Copy(&buf, r)
@@ -95,14 +95,14 @@ func TestProgress(t *testing.T) {
 }
 
 func TestSuccess(t *testing.T) {
-	old := os.Stdout
+	old := os.Stderr
 	r, w, _ := os.Pipe()
-	os.Stdout = w
+	os.Stderr = w
 
 	Success("success message")
 
 	w.Close()
-	os.Stdout = old
+	os.Stderr = old
 
 	var buf bytes.Buffer
 	io.Copy(&buf, r)
@@ -117,14 +117,14 @@ func TestSuccess(t *testing.T) {
 }
 
 func TestMessageWithVars(t *testing.T) {
-	old := os.Stdout
+	old := os.Stderr
 	r, w, _ := os.Pipe()
-	os.Stdout = w
+	os.Stderr = w
 
 	Message("test %s %d", "hello", 42)
 
 	w.Close()
-	os.Stdout = old
+	os.Stderr = old
 
 	var buf bytes.Buffer
 	io.Copy(&buf, r)
@@ -244,14 +244,14 @@ func TestUserMsg_print(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			old := os.Stdout
+			old := os.Stderr
 			r, w, _ := os.Pipe()
-			os.Stdout = w
+			os.Stderr = w
 
 			tt.userMsg.print()
 
 			w.Close()
-			os.Stdout = old
+			os.Stderr = old
 
 			var buf bytes.Buffer
 			io.Copy(&buf, r)

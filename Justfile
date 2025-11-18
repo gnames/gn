@@ -1,5 +1,9 @@
 # Justfile for gn project
 
+# Run tests without verbose output
+test-quiet:
+    go test ./...
+
 # Run all tests
 test:
     go test -v -race -coverprofile=coverage.out ./...
@@ -13,9 +17,6 @@ test-coverage: test
 test-cover:
     go test -cover ./...
 
-# Run tests without verbose output
-test-quiet:
-    go test ./...
 
 # Run tests with specific timeout
 test-timeout timeout="5m":

@@ -4,6 +4,7 @@ package gn
 
 import (
 	"fmt"
+	"os"
 	"regexp"
 
 	"github.com/fatih/color"
@@ -114,7 +115,7 @@ func (u userMsg) print() {
 		icon = "⏳ "
 	}
 
-	fmt.Println(icon + msg)
+	fmt.Fprintln(os.Stderr, icon+msg)
 }
 
 // colorize processes inline formatting tags in the message and applies
